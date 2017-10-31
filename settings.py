@@ -13,7 +13,7 @@ def get_config():
             _CONFIG = RawConfigParser()
             _CONFIG.read('datasets.cfg')
         else:
-            raise ValueError('Could not find configuration file domain_datasets.cfg')
+            raise ValueError('Could not find configuration file datasets.cfg')
     return _CONFIG
 
 
