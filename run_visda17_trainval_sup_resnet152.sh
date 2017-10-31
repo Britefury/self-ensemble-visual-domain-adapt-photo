@@ -1,0 +1,2 @@
+python experiment_sup.py --arch=resnet152 --img_size=160 --batch_size=64 --use_dropout --double_softmax --hflip --affine_std=0.0 --scale_u_range=0.75:1.333 --intens_scale_range=0.75:1.333 --greyscale --img_pad_width=16 --fix_layers=conv1,bn1,layer1 --num_epochs=10 --learning_rate=1e-5 --log_file=results_visda17/res_visda17_trianval_sup_resnet152_run${2}.txt --result_file=results_final/history_visda17_trianval_sup_resnet152_run${2}.h5
+
