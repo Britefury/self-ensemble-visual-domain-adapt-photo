@@ -237,6 +237,7 @@ def experiment(exp, arch, rnd_init, img_size, confidence_thresh, teacher_alpha, 
         #
 
         if result_file != '':
+            cmdline_helpers.ensure_containing_dir_exists(result_file)
             h5_filters = tables.Filters(complevel=9, complib='blosc')
             f_target_pred = tables.open_file(result_file, mode='w')
             g_tgt_pred = f_target_pred.create_group(f_target_pred.root, 'target_pred_y', 'Target prediction')
@@ -468,6 +469,7 @@ def experiment(exp, arch, rnd_init, img_size, confidence_thresh, teacher_alpha, 
         print('Compiled evaluation function')
 
         # Setup output
+        cmdline_helpers.ensure_containing_dir_exists(log_file)
         def log(text):
             print(text)
             if log_file is not None:
@@ -572,6 +574,7 @@ def experiment(exp, arch, rnd_init, img_size, confidence_thresh, teacher_alpha, 
 
         # Save network
         if model_file != '':
+            cmdline_helpers.ensure_containing_dir_exists(model_file)
             with open(model_file, 'wb') as f:
                 pickle.dump(best_teacher_model_state, f)
 

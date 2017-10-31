@@ -42,6 +42,17 @@ history of predictions generated during training. The model file will contain th
 To generate a submission file suitable for submission to the VisDA-17 CodaLab site, use the program
 `build_visda_submission.py`.
 
+## Note on bugs
+
+There are two 'bugs' that are used in our VisDA experiment.
+
+1. Due to a programming error, we applied the softmax non-linearity twice to the end of the network. When we fixed
+this our performance on the validation set dropped, so it was re-introduced as a command line option that is used
+for our experiments.
+2. Due to a programming error, the class balance loss binary cross entropy was implemented as
+-(p*log(q) + (1-p)*log(1+q)) instead of -(p*log(q) + (1-p)*log(1-q)). Once again, fixing this dropped our performance
+so the command line option --cls_balance_loss takes the value 'bug' to use it. This is used in our experiments.
+
 ## Installation
 
 You will need:

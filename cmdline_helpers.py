@@ -1,4 +1,4 @@
-
+import os
 
 def colon_separated_range(x):
     lower = upper = None
@@ -15,3 +15,10 @@ def colon_separated_range(x):
             return
 
     return lower, upper
+
+
+def ensure_containing_dir_exists(path):
+    dir_name = os.path.dirname(path)
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+    return path
