@@ -19,6 +19,6 @@ def colon_separated_range(x):
 
 def ensure_containing_dir_exists(path):
     dir_name = os.path.dirname(path)
-    if not os.path.exists(dir_name):
+    if dir_name != '' and not os.path.exists(dir_name):
         os.makedirs(dir_name)
     return path

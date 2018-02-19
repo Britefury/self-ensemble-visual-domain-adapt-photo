@@ -1,8 +1,13 @@
 # Self-ensembling for visual domain adaptation (photos)
 
-Implementation of the paper 'Self-ensembling for visual domain adaptation', submitted to ICLR 2018.
+Implementation of the paper [Self-ensembling for visual domain adaptation](https://arxiv.org/abs/1706.05208),
+accepted as a poster at ICLR 2018.
 
 For photographic datasets such as The VisDA visual domain adaptation challenge and the Office dataset.
+
+For the small image experiments go to
+[https://github.com/Britefury/self-ensemble-visual-domain-adapt/](https://github.com/Britefury/self-ensemble-visual-domain-adapt/).
+
 
 ## Setup
 
@@ -26,14 +31,32 @@ office_webcam=<path_to_office_webcam>
 The main experiment file is `experiment_selfens_meanteacher.py`. Invoking it with the `--help` command line argument
 will show you the command line options.
 
-To replicate our results, invoke the shell scripts. E.g. `run_visda17_trainval_resnet152.sh` will train a ResNet-152
-based network on the training and validation sets:
+To replicate our results, invoke the shell scripts.
+
+To train a ResNet-152 based network on the training and validation sets:
+```sh run_visda17_trainval_resnet152.sh <GPU> <RUN>```
+
+Where `<GPU>` is an integer identifying the GPU to use and <RUN> enumerates the experiment number so that
+you can keep logs of multiple repeated runs separate, e.g.:
 
 ```sh run_visda17_trainval_resnet152.sh 0 01```
+Will run on GPU 0 and will generate log files with names suffixed with `run01`.
 
-will run the training-validation set experiment. The command line arguments are the CUDA device and the run
-identifier (a name) that is appended to the names of output files. The command above will use CUDA device 0 and will
-generate output files with the suffix 'run01'.
+
+To train a ResNet-152 based network on the training and validation sets using basic augmentation:
+```sh run_visda17_trainval_resnet152_basicaug.sh <GPU> <RUN>```
+
+To train a ResNet-152 based network on the training and validation sets using minimal augmentation:
+```sh run_visda17_trainval_resnet152_minaug.sh <GPU> <RUN>```
+
+To train a ResNet-50 based network on the training and validation sets:
+```sh run_visda17_trainval_resnet50.sh <GPU> <RUN>```
+
+To train a ResNet-152 based network on the training and validation sets using minimal augmentation using supervised
+training only:
+```sh run_visda17_trainval_sup_resnet152_minaug.sh <GPU> <RUN>```
+
+There are similar experiments for the training and test set.
 
 Running the experiments will generate 3 output files; a log file, a prediction file and a model file. The log file
 will contain a copy of the training output that was printed to the console. The prediction will will contain the
@@ -67,9 +90,10 @@ First, install OpenCV and PyTorch as `pip` may have trouble with these.
 
 On Linux, install using `conda`:
 
-```> conda install -c menpo opencv```
+```> conda install opencv```
 
-On Windows, go NOTE-TO-SELF <url here> and download the OpenCV wheel file and install with:
+On Windows, go to [https://www.lfd.uci.edu/~gohlke/pythonlibs/](https://www.lfd.uci.edu/~gohlke/pythonlibs/) and
+download the OpenCV wheel file and install with:
 
 ```> pip install <path_of_opencv_file>```
 
@@ -77,11 +101,11 @@ On Windows, go NOTE-TO-SELF <url here> and download the OpenCV wheel file and in
 
 On Linux:
 
-```> conda install -c soumith pytorch```
+```> conda install pytorch torchvision -c pytorch```
 
 On Windows:
 
-```> conda install -c peterjc123 pytorch```
+```> conda install -c peterjc123 pytorch cuda90```
 
 ### The rest
 

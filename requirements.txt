@@ -8,4 +8,4 @@ scikit-learn>=0.18
 pytables
 pytorch
 torchvision
--e git://github.com/Britefury/batchup.git#egg=batchup
+batchup
